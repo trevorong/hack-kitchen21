@@ -1,28 +1,51 @@
-import './App.css';
+import "./App.css";
 import React from "react";
+import DogCard from "./components/DogCard";
 
 class Homepage extends React.Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			searchQuery_hot_s_p_: "",
-		};
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchQuery: "",
+      data: [],
+    };
 
-    this.shiitake = this.shiitake.bind(this);
-    this.artistsconk = this.artistsconk.bind(this);
-	}
+    this.submitQuery = this.submitQuery.bind(this);
+    this.displayQuery = this.displayQuery.bind(this);
+  }
 
-	shiitake(event) {
-		// shiitake
+  async hot_callAPI(breedName) {
+    const hot_opts = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "x-api-key": "6b74986d-b833-4e61-b172-ba23c9802406",
+      },
+    };
+
+    const hot_response = await fetch(
+      "https://api.thedogapi.com/v1/breeds/",
+      hot_opts
+    );
+
+    if (!hot_response.ok) throw new Error(hot_response.status);
+
+    const hot_json = await hot_response.json();
+
+    const hot_rand = parseInt(Math.random() * hot_json.length);
+    const hot_img = hot_json[hot_rand].image.url;
+    this.setState({ hotimg: [...this.state.data, hot_json[hot_rand]] });
+    console.log(hot_img);
+  }
+
+  submitQuery(event) {
     // Something else
     event.preventDefault();
-    alert(this.state.searchQuery_hot_s_p_);
-
+    this.hot_callAPI();
     // clear out input
-    this.setState({
-      searchQuery_hot_s_p_: ""
-    });
+
   }
 
   artistsconk(event) {
@@ -32,16 +55,16 @@ class Homepage extends React.Component {
     });
   }
 
-	portabello() {
-		// render header
-		const name = "Dogginator";
-		return <h className="Header">{name}</h>;
-	}
 
-	whiteButton() {
-		// renderSearchbar
-		return (
-			<form className="Search" onSubmit={this.shiitake}>
+  renderHeader() {
+    const name = "Dogginator";
+    return <h className="Header">{name}</h>;
+  }
+
+  renderSearchBar() {
+    return (
+      <form className="Search" onSubmit={this.submitQuery}>
+
         <label>
           <input
 						className="Searchbar"
@@ -50,20 +73,25 @@ class Homepage extends React.Component {
             value={this.state.searchQuery_hot_s_p_}
             onChange={this.artistsconk}
           />
-        </label>&nbsp;
-        <input style={{cursor: "pointer"}} type="submit" value="Go!" />
-      </form>
-		);
-	}
 
-	render() {
-		return(
-			<div className="Homepage">
-				{this.portabello()}
-				{this.whiteButton()}
-			</div>
-		);
-	}
+        </label>
+        &nbsp;
+        <input type="submit" value="Go!" />
+      </form>
+    );
+  }
+  render() {
+    const displayDogs = this.state.data.map((cur) => {
+      return <DogCard imageURL={cur.image.url} />;
+    });
+    return (
+      <div className="Homepage">
+        {this.renderHeader()}
+        {this.renderSearchBar()}
+      </div>
+    );
+  }
+
 }
 
 export default Homepage;

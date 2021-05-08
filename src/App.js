@@ -1,7 +1,8 @@
 import './App.css';
 import {useState} from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Profile from './Profile'
+import Homepage from './homepage'
 
 function App() {
   const [hotimg, setHotImg] = useState(null);
@@ -25,22 +26,14 @@ function App() {
     console.log(hot_json[hot_rand])
     setHotImg(hot_img);
   }
-
+  
   return (
     <div className="App">
       <Router>
-        <Route exact path='/'>
-          <div>
-            hello world
-          </div>
-          <button onClick={hot_callAPI}>click me</button>
-          <Link to='/profile'>link</Link>
-
-          {hotimg && <img src={hotimg} alt='hot dog'/>}
-        </Route>
-        <Route path='/profile'>
-          <Profile/>
-        </Route>
+        <Switch>
+          <Route exact path='/' component={Homepage}></Route>
+          <Route path='/profile' component={Profile} ></Route>
+        </Switch>
       </Router>
     </div>
   );

@@ -35,15 +35,18 @@ class Homepage extends React.Component {
 
     const hot_rand = parseInt(Math.random() * hot_json.length);
     const hot_img = hot_json[hot_rand].image.url;
-    this.setState({ hotimg: [...this.state.data, hot_json[hot_rand]] });
-    console.log(hot_img);
+    const tempArray = this.state.data;
+    tempArray.push(hot_json[hot_rand]);
+    this.setState({ data: tempArray });
+    //    console.log(hot_img);
   }
 
   submitQuery(event) {
     // Something else
     event.preventDefault();
     this.hot_callAPI();
-    // clear out input
+    // clear out inputk
+    return "https://cdn2.thedogapi.com/images/SJp7Qe5EX.jpg";
   }
 
   displayQuery(event) {
@@ -75,16 +78,26 @@ class Homepage extends React.Component {
     );
   }
   render() {
-    const displayDogs = this.state.data.map((cur) => {
+    const DisplayDogs = this.state.data.map((cur) => {
       return <DogCard imageURL={cur.image.url} />;
     });
+    console.log(this.state.data);
     return (
       <div className="Homepage">
         {this.renderHeader()}
         {this.renderSearchBar()}
+        {this.state.data[0] ? (
+          <DogCard imageURL={this.state.data[0].image.url} />
+        ) : (
+          ""
+        )}
+        <DogCard imageURL="https://cdn2.thedogapi.com/images/SJp7Qe5EX.jpg" />
       </div>
     );
   }
 }
 
+/*
+
+*/
 export default Homepage;

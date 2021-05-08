@@ -25,7 +25,8 @@
 }
 
 .Search {
-  margin-bottom: 49vh;
+  padding-bottom: 1vh;
+  padding-top: 1vh;
 }
 
 .Search input {
@@ -38,4 +39,13 @@
 
 .Searchbar {
   width: 50vw;
+}
+
+.Card {
+  max-width: 345px;
+  background-color: #FFED7A;
+}
+
+.CardMedia {
+  height: 50vh;
 }

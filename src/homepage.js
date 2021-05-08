@@ -79,19 +79,15 @@ class Homepage extends React.Component {
   }
   render() {
     const DisplayDogs = this.state.data.map((cur) => {
-      return <DogCard imageURL={cur.image.url} />;
+      return <DogCard key={cur.image.url} imageURL={cur.image.url}
+			breed={cur.name} description={cur.temperament}/>;
     });
     console.log(this.state.data);
     return (
       <div className="Homepage">
         {this.renderHeader()}
         {this.renderSearchBar()}
-        {this.state.data[0] ? (
-          <DogCard imageURL={this.state.data[0].image.url} />
-        ) : (
-          ""
-        )}
-        <DogCard imageURL="https://cdn2.thedogapi.com/images/SJp7Qe5EX.jpg" />
+        {DisplayDogs}
       </div>
     );
   }

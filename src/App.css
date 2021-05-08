@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Inconsolata|Fira+Sans');
+
 .App {
   text-align: center;
 }
 
 .Homepage {
-  background-color:royalblue;
+  background-color: rgb(65, 125, 255);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -12,7 +14,7 @@
 }
 
 .Header {
-  font-family: 'Helvetica Neue';
+  font-family: 'Fira Sans', sans-serif;
   font-size: 96px;
   margin-top: 20vh;
 }
@@ -26,4 +28,9 @@
   border: none;
   padding: 1vmin;
   text-align: center;
+  font-family: 'Lato';
+}
+
+.Searchbar {
+  width: 50vw;
 }

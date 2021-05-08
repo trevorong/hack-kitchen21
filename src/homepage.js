@@ -1,5 +1,6 @@
 import './App.css';
 import React from "react";
+import { Link } from 'react-router-dom';
 
 class Homepage extends React.Component {
 
@@ -41,13 +42,14 @@ class Homepage extends React.Component {
 			<form className="Search" onSubmit={this.submitQuery}>
         <label>
           <input
+						className="Searchbar"
             type="text"
             placeholder="Search for doggos..."
             value={this.state.searchQuery}
             onChange={this.displayQuery}
           />
         </label>&nbsp;
-        <input type="submit" value="Go!" />
+        <input style={{cursor: "pointer"}} type="submit" value="Go!" />
       </form>
 		);
 	}
@@ -55,8 +57,8 @@ class Homepage extends React.Component {
 	render() {
 		return(
 			<div className="Homepage">
-					{this.renderHeader()}
-					{this.renderSearchBar()}
+				{this.renderHeader()}
+				{this.renderSearchBar()}
 			</div>
 		);
 	}

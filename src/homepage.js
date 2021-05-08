@@ -3,6 +3,7 @@ import React from "react";
 import DogCard from "./components/DogCard";
 
 class Homepage extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -44,14 +45,16 @@ class Homepage extends React.Component {
     event.preventDefault();
     this.hot_callAPI();
     // clear out input
+
   }
 
-  displayQuery(event) {
-    // get input from search bar
+  artistsconk(event) {
+    // display input from search bar
     this.setState({
-      searchQuery: event.target.value,
+      searchQuery_hot_s_p_: event.target.value,
     });
   }
+
 
   renderHeader() {
     const name = "Dogginator";
@@ -61,13 +64,16 @@ class Homepage extends React.Component {
   renderSearchBar() {
     return (
       <form className="Search" onSubmit={this.submitQuery}>
+
         <label>
           <input
+						className="Searchbar"
             type="text"
             placeholder="Search for doggos..."
-            value={this.state.searchQuery}
-            onChange={this.displayQuery}
+            value={this.state.searchQuery_hot_s_p_}
+            onChange={this.artistsconk}
           />
+
         </label>
         &nbsp;
         <input type="submit" value="Go!" />
@@ -85,6 +91,7 @@ class Homepage extends React.Component {
       </div>
     );
   }
+
 }
 
 export default Homepage;

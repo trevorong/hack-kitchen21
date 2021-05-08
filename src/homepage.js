@@ -3,7 +3,6 @@ import React from "react";
 import DogCard from "./components/DogCard";
 
 class Homepage extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -36,8 +35,10 @@ class Homepage extends React.Component {
 
     const hot_rand = parseInt(Math.random() * hot_json.length);
     const hot_img = hot_json[hot_rand].image.url;
-    this.setState({ hotimg: [...this.state.data, hot_json[hot_rand]] });
-    console.log(hot_img);
+    const tempArray = this.state.data;
+    tempArray.push(hot_json[hot_rand]);
+    this.setState({ data: tempArray });
+    //    console.log(hot_img);
   }
 
   submitQuery(event) {
@@ -45,7 +46,6 @@ class Homepage extends React.Component {
     event.preventDefault();
     this.hot_callAPI();
     // clear out input
-
   }
 
   artistsconk(event) {
@@ -55,7 +55,6 @@ class Homepage extends React.Component {
     });
   }
 
-
   renderHeader() {
     const name = "Dogginator";
     return <h className="Header">{name}</h>;
@@ -64,16 +63,14 @@ class Homepage extends React.Component {
   renderSearchBar() {
     return (
       <form className="Search" onSubmit={this.submitQuery}>
-
         <label>
           <input
-						className="Searchbar"
+            className="Searchbar"
             type="text"
             placeholder="Search for doggos..."
             value={this.state.searchQuery_hot_s_p_}
             onChange={this.artistsconk}
           />
-
         </label>
         &nbsp;
         <input type="submit" value="Go!" />
@@ -81,17 +78,26 @@ class Homepage extends React.Component {
     );
   }
   render() {
-    const displayDogs = this.state.data.map((cur) => {
+    const DisplayDogs = this.state.data.map((cur) => {
       return <DogCard imageURL={cur.image.url} />;
     });
+    console.log(this.state.data);
     return (
       <div className="Homepage">
         {this.renderHeader()}
         {this.renderSearchBar()}
+        {this.state.data[0] ? (
+          <DogCard imageURL={this.state.data[0].image.url} />
+        ) : (
+          ""
+        )}
+        <DogCard imageURL="https://cdn2.thedogapi.com/images/SJp7Qe5EX.jpg" />
       </div>
     );
   }
-
 }
 
+/*
+
+*/
 export default Homepage;

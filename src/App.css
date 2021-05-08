@@ -5,7 +5,7 @@
 }
 
 .Homepage {
-  background-color: rgb(65, 125, 255);
+  background-color: rgb(105, 125, 255);
   display: flex;
   flex-direction: column;
   min-height: 100vh;

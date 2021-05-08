@@ -43,18 +43,17 @@ class Homepage extends React.Component {
   submitQuery(event) {
     // Something else
     event.preventDefault();
-    this.hot_callAPI();
+    this.hot_callAPI(this.state.searchQuery);
     // clear out input
 
   }
 
-  artistsconk(event) {
+  displayQuery(event) {
     // display input from search bar
     this.setState({
-      searchQuery_hot_s_p_: event.target.value,
+      searchQuery: event.target.value,
     });
   }
-
 
   renderHeader() {
     const name = "Dogginator";
@@ -76,7 +75,7 @@ class Homepage extends React.Component {
 
         </label>
         &nbsp;
-        <input type="submit" value="Go!" />
+        <input type="submit" style={{cursor: "pointer"}} value="Go!" />
       </form>
     );
   }

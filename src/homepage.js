@@ -45,14 +45,13 @@ class Homepage extends React.Component {
     // Something else
     event.preventDefault();
     this.hot_callAPI();
-    // clear out inputk
-    return "https://cdn2.thedogapi.com/images/SJp7Qe5EX.jpg";
+    // clear out input
   }
 
-  displayQuery(event) {
-    // get input from search bar
+  artistsconk(event) {
+    // display input from search bar
     this.setState({
-      searchQuery: event.target.value,
+      searchQuery_hot_s_p_: event.target.value,
     });
   }
 
@@ -66,10 +65,11 @@ class Homepage extends React.Component {
       <form className="Search" onSubmit={this.submitQuery}>
         <label>
           <input
+            className="Searchbar"
             type="text"
             placeholder="Search for doggos..."
-            value={this.state.searchQuery}
-            onChange={this.displayQuery}
+            value={this.state.searchQuery_hot_s_p_}
+            onChange={this.artistsconk}
           />
         </label>
         &nbsp;

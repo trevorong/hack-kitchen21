@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|Inconsolata|Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lato|Inconsolata|Fira+Sans|Comic+Sans');
 
 .App {
   text-align: center;
@@ -17,6 +17,11 @@
   font-family: 'Fira Sans', sans-serif;
   font-size: 96px;
   margin-top: 20vh;
+}
+
+.Header:hover {
+  font-family: 'Comic Sans MS';
+  margin-top: 17.5vh;
 }
 
 .Search {

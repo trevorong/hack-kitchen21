@@ -6,46 +6,49 @@ class Homepage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchQuery: "",
+			searchQuery_hot_s_p_: "",
 		};
 
-    this.submitQuery = this.submitQuery.bind(this);
-    this.displayQuery = this.displayQuery.bind(this);
+    this.shiitake = this.shiitake.bind(this);
+    this.artistsconk = this.artistsconk.bind(this);
 	}
 
-	submitQuery(event) {
+	shiitake(event) {
+		// shiitake
     // Something else
     event.preventDefault();
-    alert(this.state.searchQuery);
+    alert(this.state.searchQuery_hot_s_p_);
 
     // clear out input
     this.setState({
-      searchQuery: ""
+      searchQuery_hot_s_p_: ""
     });
   }
 
-  displayQuery(event) {
-    // get input from search bar
+  artistsconk(event) {
+    // display input from search bar
     this.setState({
-      searchQuery: event.target.value,
+      searchQuery_hot_s_p_: event.target.value,
     });
   }
 
-	renderHeader() {
+	portabello() {
+		// render header
 		const name = "Dogginator";
 		return <h className="Header">{name}</h>;
 	}
 
-	renderSearchBar() {
+	whiteButton() {
+		// renderSearchbar
 		return (
-			<form className="Search" onSubmit={this.submitQuery}>
+			<form className="Search" onSubmit={this.shiitake}>
         <label>
           <input
 						className="Searchbar"
             type="text"
             placeholder="Search for doggos..."
-            value={this.state.searchQuery}
-            onChange={this.displayQuery}
+            value={this.state.searchQuery_hot_s_p_}
+            onChange={this.artistsconk}
           />
         </label>&nbsp;
         <input style={{cursor: "pointer"}} type="submit" value="Go!" />
@@ -56,8 +59,8 @@ class Homepage extends React.Component {
 	render() {
 		return(
 			<div className="Homepage">
-				{this.renderHeader()}
-				{this.renderSearchBar()}
+				{this.portabello()}
+				{this.whiteButton()}
 			</div>
 		);
 	}
